@@ -18,7 +18,7 @@ Context file so a new session can resume work. Contains NO credentials, balances
 - Message the user only on: trade closed (P&L), new trade opened, stop-rule hit, or new login needed. No routine reports.
 
 ## Supervision
-- Scheduled task `OKX trade supervision` (every 4 hours) wakes the session.
+- Scheduled task `OKX trade supervision` (every 4 hours) wakes the session. Helper scripts: `tools/watch.py` (read-only event watcher, run via Monitor) and `tools/scan.py` (read-only scanner + sizing under the rules).
 
 ## Trades
 | # | Opened (UTC) | Pair | Entry | TP | SL | Status | Result |
