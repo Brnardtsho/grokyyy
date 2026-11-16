@@ -6,12 +6,15 @@ Context file so a new session can resume work. Contains NO credentials, balances
 - Tool: `okx` CLI (`@okx_ai/okx-trade-cli`), OAuth login, site: global, live mode.
 - If `okx auth status --json` is not `logged_in`: run `okx auth login --manual --site global` and give the user the URL + code. The `okx-auth` binary may need a manual `curl` download from `static.coinall.ltd/upgradeapp/tools/oauth/linux-x64/` (verify sha256 from `checksum.json`) because the CLI's own downloader ignores the proxy. The environment must allow `www.okx.com` and `static.coinall.ltd`.
 
-## Rules (set with the user, who delegated full discretion)
-- Spot only. No leverage, futures, options or bots.
-- Max 25% of equity in one new position.
-- Every entry has an OCO TP/SL attached on OKX.
+## Rules (set with the user, who delegated full discretion and allowed cautious leverage)
+- Spot allowed. Perp swaps (USDT-margined) allowed with leverage, under the limits below. No options, no bots.
+- Leverage max 3x, ISOLATED margin only, never cross. Only BTC/ETH/SOL perps.
+- Only one leveraged position at a time.
+- Risk per trade (distance entry to stop x size) <= 1.5% of equity; at most 25% of equity as margin.
+- Every entry has a stop-loss on OKX at entry time (attached TP/SL or OCO). No entry without a stop. Never move a stop further away.
+- Liquidation price must be at least 2x farther from entry than the stop.
 - Never withdraw or transfer out.
-- Stop and tell the user if equity falls ~15% below the starting equity (start: ~76 USDT).
+- Stop trading and tell the user if equity falls ~15% below the starting equity (start: ~76 USDT). After 3 consecutive losses, pause new entries for 24h.
 - Message the user only on: trade closed (P&L), new trade opened, stop-rule hit, or new login needed. No routine reports.
 
 ## Supervision
