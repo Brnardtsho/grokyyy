@@ -16,7 +16,7 @@ def ind(name, inst, bar, params=None):
         return list(tf.values())[0][0]["values"]
     except Exception: return None
 equity = float(sys.argv[1]) if len(sys.argv) > 1 else 76.0
-for coin in ("BTC","ETH","SOL"):
+for coin in ("BTC","ETH","SOL","XRP","DOGE","HYPE"):
     inst = f"{coin}-USDT"
     t = okx("market","ticker",inst); px = float(t[0]["last"]) if t else None
     rsi4 = ind("rsi",inst,"4H"); rsi1 = ind("rsi",inst,"1H")
