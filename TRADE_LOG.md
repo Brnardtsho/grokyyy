@@ -24,7 +24,7 @@ Context file so a new session can resume work. Contains NO credentials, balances
 | # | Opened (UTC) | Pair | Entry | TP | SL | Status | Result |
 |---|---|---|---|---|---|---|---|
 | 1 | 2026-11-16 17:02 | BTC-USDT | 64,951 | 67,500 | 63,000 | open (OCO live on OKX) | - |
-| 2 | 2026-11-17 11:49 | SOL-USDT-SWAP short 3x isolated, 1.2 SOL | 73.37 | 71.56 | 74.59 | open (OCO live on OKX) | - |
+| 2 | 2026-11-17 11:49 | SOL-USDT-SWAP short 3x isolated, 1.2 SOL | 73.37 | 71.56 | 73.25 (moved from 74.59 after +2%, 2026-11-17 15:50) | open (OCO live on OKX) | - |
 
 Rationale #1: BTC in a sharp downtrend (80.5k to 65k in two weeks, below EMA20) but 4H RSI ~34 (oversold). Small probe for a short bounce, risk about 0.8% of equity.
 
