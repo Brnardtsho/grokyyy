@@ -24,6 +24,7 @@ Context file so a new session can resume work. Contains NO credentials, balances
 | # | Opened (UTC) | Pair | Entry | TP | SL | Status | Result |
 |---|---|---|---|---|---|---|---|
 | 1 | 2026-11-16 17:02 | BTC-USDT | 64,951 | 67,500 | 63,000 | open (OCO live on OKX) | - |
+| 2 | 2026-11-17 11:49 | SOL-USDT-SWAP short 3x isolated, 1.2 SOL | 73.37 | 71.56 | 74.59 | open (OCO live on OKX) | - |
 
 Rationale #1: BTC in a sharp downtrend (80.5k to 65k in two weeks, below EMA20) but 4H RSI ~34 (oversold). Small probe for a short bounce, risk about 0.8% of equity.
 
@@ -32,3 +33,5 @@ Rationale #1: BTC in a sharp downtrend (80.5k to 65k in two weeks, below EMA20) 
 - Entry rule adopted for small-size trials: pullback short in downtrend per above, perp, max 3x, isolated, risk 1.5% equity. Do not open it on a coin where an opposite spot position is open (they cancel). Re-test when the regime changes.
 
 - 2026-11-17 grid-bot simulation (spot grid, 40 USDT, 20 grids, same 12-day downtrend): total PnL -6 to -9 USDT (-15% to -23%), realized only +0.1 to +0.25 USDT. A grid is NOT better than waiting in a falling market; it only works in a sideways range. Re-test if the market turns sideways (low ATR, flat EMA20/50).
+
+Rationale #2: 1H pullback short per strategy notes (px<EMA20<EMA50, RSI1H 51), stop 1.5 x ATR1H, TP 1.5R, risk ~2% of equity, margin ~40% cap.
