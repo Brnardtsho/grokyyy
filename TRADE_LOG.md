@@ -26,3 +26,7 @@ Context file so a new session can resume work. Contains NO credentials, balances
 | 1 | 2026-11-16 17:02 | BTC-USDT | 64,951 | 67,500 | 63,000 | open (OCO live on OKX) | - |
 
 Rationale #1: BTC in a sharp downtrend (80.5k to 65k in two weeks, below EMA20) but 4H RSI ~34 (oversold). Small probe for a short bounce, risk about 0.8% of equity.
+
+## Strategy notes
+- 2026-11-17 backtest (tools/backtest.py, 300 candles of 1H/15m, 5 coins, 0.1% round-trip fee, ONE downtrend regime of ~12 days, so regime-biased, not proof of edge): RSI<30 long and breakouts lost; short on pullback in downtrend (px < EMA20 < EMA50, RSI 40-55 on 1H, stop 1.5 ATR, target 1.5R) was best on 1H (64 trades, 61% win, +0.38% avg); 15m results weak.
+- Entry rule adopted for small-size trials: pullback short in downtrend per above, perp, max 3x, isolated, risk 1.5% equity. Do not open it on a coin where an opposite spot position is open (they cancel). Re-test when the regime changes.
