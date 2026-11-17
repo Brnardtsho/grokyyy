@@ -10,7 +10,7 @@ def okx(*a):
         return None
 def emit(s): print(time.strftime("%H:%M:%S ") + s, flush=True)
 
-base = None; flags = set(); had_algo = None; fails = 0
+base = None; flags = set(); had_algo = None; had_swap = None; fails = 0
 while True:
     t = okx("market", "ticker", "BTC-USDT")
     if not t:
@@ -33,6 +33,23 @@ while True:
                 tp, sl = float(a["tpTriggerPx"]), float(a["slTriggerPx"])
                 if px >= tp * 0.996 and "tp" not in flags: flags.add("tp"); emit(f"NEAR TP: price {px} vs TP {tp}")
                 if px <= sl * 1.004 and "sl" not in flags: flags.add("sl"); emit(f"NEAR SL: price {px} vs SL {sl}")
+    sw = okx("swap", "algo", "orders")
+    if sw is not None:
+        swl = [a for a in sw if a.get("state") == "live"]
+        if had_swap is None: had_swap = bool(swl)
+        if had_swap and not swl:
+            emit("CLOSED: SWAP OCO no longer live - check swap fills/positions and P&L")
+            had_swap = False
+        elif swl:
+            had_swap = True
+    pos = okx("account", "positions")
+    if pos:
+        for p in pos:
+            try:
+                u = float(p.get("upl") or 0); m = float(p.get("margin") or 0) or 1
+                if u / m < -0.45 and "upl" not in flags:
+                    flags.add("upl"); emit(f"WARN: {p.get('instId')} unrealized loss {u:.2f} (margin {m:.2f})")
+            except Exception: pass
     if abs(px / base - 1) >= 0.012:
         emit(f"MOVE: BTC {px} ({(px/base-1)*100:+.1f}% vs {base})"); base = px
     r = okx("market", "indicator", "rsi", "BTC-USDT", "--bar", "4H")
