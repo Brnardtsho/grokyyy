@@ -23,9 +23,13 @@ Context file so a new session can resume work. Contains NO credentials, balances
 ## Trades
 | # | Opened (UTC) | Pair | Entry | TP | SL | Status | Result |
 |---|---|---|---|---|---|---|---|
-| 1 | 2026-11-16 17:02 | BTC-USDT | 64,951 | 67,500 | 63,000 | open (OCO live on OKX) | - |
+| 1 | 2026-11-16 17:02 | BTC-USDT | 64,951 | 67,500 | 63,000 | CLOSED at SL 63,000 (2026-11-18 ~16:04) | about -0.6 USDT net of fees |
 | 2 | 2026-11-17 11:49 | SOL-USDT-SWAP short 3x isolated, 1.2 SOL | 73.37 | 71.56 | 73.25 (moved from 74.59 after +2%) | CLOSED at TP 71.57 (2026-11-17 15:48 UTC) | +2.07 USDT net of fees (~+2.7% of equity) |
 | 3 | 2026-11-17 17:50 | XRP-USDT-SWAP short 3x isolated, 95 XRP (0.95 contracts) | 0.9589 | 0.934 | 0.9757 | CLOSED at SL 0.9757 (2026-11-17 21:20 UTC) | -1.69 USDT net of fees (~-2.2% of equity) |
+
+| 4 | 2026-11-21 12:15 | BTC-USDT-SWAP short 3x isolated, 0.15 contracts | 58,191 | 56,186 | 59,558 | open (OCO live on OKX) | - |
+
+Rationale #4: 1H pullback short per strategy notes (px<EMA20<EMA50, RSI1H 43.6), stop 1.5 x ATR1H, TP 1.5R, risk under 3% of equity, margin under 40%.
 
 Rationale #1: BTC in a sharp downtrend (80.5k to 65k in two weeks, below EMA20) but 4H RSI ~34 (oversold). Small probe for a short bounce, risk about 0.8% of equity.
 
@@ -38,3 +42,5 @@ Rationale #1: BTC in a sharp downtrend (80.5k to 65k in two weeks, below EMA20) 
 Rationale #2: 1H pullback short per strategy notes (px<EMA20<EMA50, RSI1H 51), stop 1.5 x ATR1H, TP 1.5R, risk ~2% of equity, margin ~40% cap.
 
 - Tally 2026-11-17 21:20 UTC: SOL short +2.07, XRP short -1.69 (stopped out), BTC long still open. Consecutive losses: 1.
+
+- Tally 2026-11-21: BTC long stopped out (about -0.6 USDT). Consecutive losses: 2 (XRP, BTC); a third loss triggers the 24h pause. Supervision is hourly; ignore backlogs of identical queued triggers after container restarts.
