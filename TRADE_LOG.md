@@ -54,3 +54,5 @@ Rationale #2: 1H pullback short per strategy notes (px<EMA20<EMA50, RSI1H 51), s
 - Tally 2026-11-21: BTC long stopped out (about -0.6 USDT). Consecutive losses: 2 (XRP, BTC); a third loss triggers the 24h pause. Supervision is hourly; ignore backlogs of identical queued triggers after container restarts.
 
 - 2026-11-21 13:23: trade 4 stopped out (about -2.1 USDT). Consecutive losses: 3 (XRP, BTC, BTC) -> 24h pause on new entries until about 2026-11-22 13:30. Rule check: 1H pullback short lost 3 in a row in a falling market that bounced; review before resuming.
+
+- 2026-11-21: USER-AUTHORIZED ACTIVE EXPERIMENT: strategy D (tools/strategy_d_1h.py) on BTC/ETH/SOL perps with a HARD loss budget of 1 USDT total (fees included). Risk per trade 0.25 USDT, 3x isolated max, OCO stop 1.5 ATR + TP 1.5R on OKX, one position, close after 24h. Stop trading D when cumulative realized loss reaches 1 USDT. If cumulative profit shows, user allows scaling up (double risk per trade). Strategy D failed its backtest, so expectation is negative; this is a bounded test.
