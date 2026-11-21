@@ -17,10 +17,12 @@ Context file so a new session can resume work. Contains NO credentials, balances
 - Stop trading and tell the user if equity falls ~15% below the starting equity (start: ~76 USDT). After 3 consecutive losses, pause new entries for 24h.
 - Message the user only on: trade closed (P&L), new trade opened, stop-rule hit, or new login needed. No routine reports.
 
-## Active strategy (changed 2026-11-21): C = daily Donchian trend following, BTC + ETH perps only
+## Active strategy (changed 2026-11-21): C = daily Donchian trend following, BTC + ETH + SOL perps only
 - Why: the 1H pullback short lost 3 trades in a row and has no validated edge; 4H breakout+retest (V1) and 4H EMA50 pullback (V2) FAILED 3-year backtests (PF < 1.3). C passed all 6 windows (PF 1.70-11.58) but with only 4-7 trades per window, so evidence is weak. Funding arbitrage: DO NOT ENTER (2-6% gross annualized, below Earn).
 - Rules (fixed, see tools/strategy_c_donchian_1d.py): evaluate on each CLOSED daily candle. LONG if close > highest high of previous 55 days; SHORT if close < lowest low of previous 55 days. Exit when close crosses the opposite 20-day channel. Initial stop 2 x ATR(20) placed on OKX at entry (OCO, never widened). One position at a time, 3x isolated max.
 - Risk per trade 2% of equity (tested at 1%; 2% is within the 3% cap). Daily profit is NOT a goal or promise: expect about 5-7 trades per year per coin; most days there is no trade.
+- SOL added 2026-11-21: strategy C on SOL passed by the rule (PF 18.64 / 0.95 / 4.58) but window 1 rests on 3 trades, so weak evidence.
+- Strategy D (1H Donchian + trend filter, ~0.4 trades/day) FAILED on BTC, ETH and SOL (PF 0.87-1.60, DD up to -29%): not traded. Intraday churning loses to fees without an edge.
 - Do not open any other discretionary trade type. The 24h pause after 3 losses applies until 2026-11-22 13:30 UTC.
 
 ## Supervision
