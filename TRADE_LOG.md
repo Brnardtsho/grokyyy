@@ -27,7 +27,7 @@ Context file so a new session can resume work. Contains NO credentials, balances
 | 2 | 2026-11-17 11:49 | SOL-USDT-SWAP short 3x isolated, 1.2 SOL | 73.37 | 71.56 | 73.25 (moved from 74.59 after +2%) | CLOSED at TP 71.57 (2026-11-17 15:48 UTC) | +2.07 USDT net of fees (~+2.7% of equity) |
 | 3 | 2026-11-17 17:50 | XRP-USDT-SWAP short 3x isolated, 95 XRP (0.95 contracts) | 0.9589 | 0.934 | 0.9757 | CLOSED at SL 0.9757 (2026-11-17 21:20 UTC) | -1.69 USDT net of fees (~-2.2% of equity) |
 
-| 4 | 2026-11-21 12:15 | BTC-USDT-SWAP short 3x isolated, 0.15 contracts | 58,191 | 56,186 | 59,558 | open (OCO live on OKX) | - |
+| 4 | 2026-11-21 12:15 | BTC-USDT-SWAP short 3x isolated, 0.15 contracts | 58,191 | 56,186 | 59,558 | CLOSED at SL ~59,547 (2026-11-21 13:23) | about -2.1 USDT net of fees |
 
 Rationale #4: 1H pullback short per strategy notes (px<EMA20<EMA50, RSI1H 43.6), stop 1.5 x ATR1H, TP 1.5R, risk under 3% of equity, margin under 40%.
 
@@ -44,3 +44,5 @@ Rationale #2: 1H pullback short per strategy notes (px<EMA20<EMA50, RSI1H 51), s
 - Tally 2026-11-17 21:20 UTC: SOL short +2.07, XRP short -1.69 (stopped out), BTC long still open. Consecutive losses: 1.
 
 - Tally 2026-11-21: BTC long stopped out (about -0.6 USDT). Consecutive losses: 2 (XRP, BTC); a third loss triggers the 24h pause. Supervision is hourly; ignore backlogs of identical queued triggers after container restarts.
+
+- 2026-11-21 13:23: trade 4 stopped out (about -2.1 USDT). Consecutive losses: 3 (XRP, BTC, BTC) -> 24h pause on new entries until about 2026-11-22 13:30. Rule check: 1H pullback short lost 3 in a row in a falling market that bounced; review before resuming.
